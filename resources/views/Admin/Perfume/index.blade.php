@@ -11,7 +11,7 @@
     {{-- Botones de Crear y regresar --}}
     <div class="flex flex-row justify-between">
         <div class="flex flex-row my-4">
-            <a href="" class="bg-pink-400 hover:bg-pink-300 sm:text-sm md:text-lg text-center font-bold p-3 rounded-lg">Regresar</a>
+            <a href="{{ route('home') }}" class="bg-pink-400 hover:bg-pink-300 sm:text-sm md:text-lg text-center font-bold p-3 rounded-lg">Regresar</a>
         </div>
     
         <div class="flex flex-row-reverse my-4">
@@ -25,30 +25,36 @@
         
       {{-- Ac va el Foreach --}}
 
-            
+             
+      @foreach ($perfumes as $item)
         <div class="p-4 lg:w-1/3">
 
+            
             <div class="rounded shadow-md relative">
+
                 
-                <img  src="" alt="">
+                <img  src="/storage/{{ $item->imagen_perfume }}" alt="">
 
                 <div class="flex justify-center items-center">
-                 <h2 class="text-3xl uppercase font-bold text-black text-center absolute top-28"></h2>
+                 {{-- <h2 class="text-3xl uppercase font-bold text-black text-center absolute top-28">{{ $item->nombre_marca}}</h2> --}}
                 </div>
                 <div>
                     
-                    <a href="" class="bg-pink-300 hover:bg-pink-200 text-xs uppercase font-bold rounded-full p-2 absolute top-0 ml-2 mt-2">
+                    <a href="{{ route('perfume.edit',['perfume' => $item->id]) }}" class="bg-pink-300 hover:bg-pink-200 text-xs uppercase font-bold rounded-full p-2 absolute top-0 ml-2 mt-2">
                          <span>Editar</span>
                     </a>
-                    <form action="" method="POST" class="bg-red-400 hover:bg-red-300 text-xs text-bg-white uppercase font-bold rounded-full p-2 absolute top-0 ml-20 mt-2">
+                    <form action="{{ route('perfume.delete',['perfume' => $item->id]) }}" method="POST" class="bg-red-400 hover:bg-red-300 text-xs text-bg-white uppercase font-bold rounded-full p-2 absolute top-0 ml-20 mt-2">
                         @csrf
                         @method('DELETE')
                         <input class="bg-red-400 text-gray-800 font-bold" type="submit" value="Eliminar">
                     </form>
                 </div>
             </div>
-
+            
         </div>   
+            
+            
+        @endforeach
 
 
 

@@ -42,17 +42,24 @@ class CreatePerfumesTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('nombre_marca');
-            $table->foreignId('categoria_id')->constrained()->comment('La categoria del perfume');
-            $table->foreignId('genero_id')->constrained()->comment('El geneo del perfume');
-            $table->foreignId('precentacion')->constrained()->comment('la precentacion del perfume');
             $table->string('imagen_perfume');
             $table->string('tamaño');
             $table->string('precio');
             $table->text('descripcion');
-            $table->uuid('uuid');
 
-            $table->foreignId('user_id')->references('id')->on('users')->comment('El usuario que crea la pagina');
-           
+            $table->foreignId('categoria_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->bigInteger('genero_id')->unsigned();
+            $table->bigInteger('precentacion_id')->unsigned();
+
+            $table->foreign('genero_id')->references('id')->on('generos')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->foreign('precentacion_id')->references('id')->on('precentacions')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

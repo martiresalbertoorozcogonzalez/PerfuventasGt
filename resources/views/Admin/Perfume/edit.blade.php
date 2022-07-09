@@ -16,9 +16,11 @@
 
 <div class="bg-red-200 py-3 px-10 mb-5">
 
-<form class="flex flex-col max-w-lg mx-auto p-0 m-0 my-10" action="{{route('perfume.store')}}" method="POST" enctype="multipart/form-data" novalidate>
+<form class="flex flex-col max-w-lg mx-auto p-0 m-0 my-10"  action="{{ route('perfume.update', ['perfume'=> $perfume->id]) }}" method="POST" enctype="multipart/form-data" novalidate>
     
 @csrf
+@method('PUT')
+
     
 <div class="mb-5">
 
@@ -29,7 +31,7 @@
     class="p-3 bg-white rounded form-input w-full @error('titulo') border-blue-500 border @enderror"
     name="titulo"
     placeholder="titulo"
-    value="{{old('titulo')}}"
+    value="{{ $perfume->titulo }}"
     >
     @error('titulo')
     <div class="bg-red-200 border border-red-500 text-red-800 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
@@ -49,7 +51,7 @@
     class="p-3 bg-white rounded form-input w-full @error('nombre_marca') border-blue-500 border @enderror"
     name="nombre_marca"
     placeholder="nombre_marca"
-    value="{{old('nombre_marca')}}"
+    value="{{ $perfume->nombre_marca}}"
     >
     @error('nombre_marca')
     <div class="bg-red-200 border border-red-500 text-red-800 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
@@ -69,7 +71,7 @@
     class="p-3 bg-white rounded form-input w-full @error('tamaño') border-blue-500 border @enderror"
     name="tamaño"
     placeholder="tamaño"
-    value="{{old('tamaño')}}"
+    value="{{ $perfume->tamaño }}"
     >
     @error('tamaño')
     <div class="bg-red-200 border border-red-500 text-red-800 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
@@ -89,9 +91,9 @@
     class="p-3 bg-white rounded form-input w-full @error('precio') border-blue-500 border @enderror"
     name="precio"
     placeholder="Precio"
-    value="{{old('precio')}}"
+    value="{{ $perfume->precio }}"
     >
-    @error('nombre_marca')
+    @error('precio')
     <div class="bg-red-200 border border-red-500 text-red-800 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
         <strong class="font-bold">Error!!</strong>
         <span class="block">{{$message}}</span>
@@ -104,19 +106,18 @@
     <label for="categoria" class="block text-gray-700 text-lg mb-2 font-bold">
         Categoria
     </label>
+    
     <select class="block appearance-none border border-gray-200 
               text-gray-700 rounded leading-tight focus:outline-none 
               focus:bg-white focus:border-gray-500 p-3 bg-gray-100 
               w-full" name="categoria_id" id="categoria">
-        <option disabled selected> Selecciona una categoria</option>
+        <option disabled selected> Selecciona </option>
         @foreach ($categorias as $categoria)
-            <option
-                {{old('categoria_id') == $categoria->id ? 'selected' : ''}} 
-                value="{{ $categoria->id }}">
-                {{ $categoria->nombre }}
+            <option value="{{ $categoria->id }}" {{ $perfume->categoria_id == $categoria->id ? 'selected' : '' }}>{{ $categoria->nombre }}
             </option>
         @endforeach
     </select>
+
     @error('categoria_id')
             <div class="bg-red-200 border border-red-500 text-red-800 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                 <strong class="font-bold">Error!!</strong>
@@ -133,12 +134,9 @@
               text-gray-700 rounded leading-tight focus:outline-none 
               focus:bg-white focus:border-gray-500 p-3 bg-gray-100 
               w-full" name="genero_id" id="categoria">
-        <option disabled selected> Selecciona un Genero</option>
+        <option disabled selected> Selecciona </option>
         @foreach ($generos as $genero)
-            <option
-                {{old('genero_id') == $genero->id ? 'selected' : ''}} 
-                value="{{ $genero->id }}">
-                {{ $genero->nombre }}
+            <option value="{{ $genero->id }}" {{ $perfume->genero_id == $genero->id ? 'selected' : '' }}>{{ $genero->nombre }}
             </option>
         @endforeach
     </select>
@@ -157,13 +155,10 @@
     <select class="block appearance-none border border-gray-200 
               text-gray-700 rounded leading-tight focus:outline-none 
               focus:bg-white focus:border-gray-500 p-3 bg-gray-100 
-              w-full" name="precentacion_id" id="precentacion">
-        <option disabled selected> Selecciona una Precentacion</option>
+              w-full" name="precentacion_id" id="categoria">
+        <option disabled selected> Selecciona </option>
         @foreach ($precentacions as $precentacion)
-            <option
-                {{old('precentacion_id') == $precentacion->id ? 'selected' : ''}} 
-                value="{{ $precentacion->id }}">
-                {{ $precentacion->nombre }}
+            <option value="{{ $precentacion->id }}" {{ $perfume->precentacion_id == $precentacion->id ? 'selected' : '' }}>{{ $precentacion->nombre }}
             </option>
         @endforeach
     </select>
@@ -179,7 +174,7 @@
         
     <label for="descripcion" class="block text-black font-bold text-lg mb-2">Descripcion para el perfume</label>
 
-    <input type="hidden" name="descripcion" id="descripcion" value="{{ old('descripcion') }}">
+    <input type="hidden" name="descripcion" id="descripcion" value="{{ $perfume->descripcion }}">
 
     <trix-editor class="bg-white @error('descripcion') is-invalid @enderror " input="descripcion">
     </trix-editor>
@@ -193,17 +188,20 @@
 
 </div>   
 
-<div class="flex flex-col mb-5">
-        
-    <label  for="imagen_perfume" class="block text-gray-700 text-lg mb-2">Elige una imagen para perfume</label>
-    
-    <input type="file" name="imagen_perfume" id="imagen_perfume" class="form-control @error('imagen_perfume') is-invalid @enderror ">
+<div class="form-group mt-3">
+    <label for="imagen_perfume">Elige una imagen de perfume</label>
+    <input type="file" name="imagen_perfume" id="imagen_perfume"
+        class="form-control @error('imagen_perfume') is-invalid @enderror ">
+
+        <div class="mt-4">
+            <p>Imagen Actual</p>
+            <img class="mt-3 mb-3" src="/storage/{{$perfume->imagen_perfume}}" style="width:200px;">
+        </div>
 
     @error('imagen_perfume')
-    <div class="bg-red-200 border border-red-500 text-red-800 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
-        <strong class="font-bold">Error!!</strong> 
-        <span class="block">{{$message}}</span>
-    </div>
+    <span class=" invalid-feedback d-block" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
     @enderror()
 </div>
 
