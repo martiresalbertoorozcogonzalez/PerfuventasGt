@@ -5,8 +5,8 @@
 {{-- Seccion de Header --}}
 <section class="flex flex-col md:flex-row justify-between py-24 px-10 bg-white text-indigo-700">
   <div class="text-center mb-10">
-    <h2 class="text-4xl md:text-8xl text-indigo-500 mb-6 animate-pulse">Perfuventas Guatemala</h2>
-    <p class="text-red-400 font-bold mb-6 text-2xl">Tienda en linea de Perfumeria Original</p>
+    <h2 class="text-4xl md:text-8xl text-indigo-900 mb-6 animate-pulse">Perfuventas Guatemala</h2>
+    <p class="text-red-400 font-bold mb-6 text-2xl">Tienda en linea Perfumeria Original</p>
 
   </div>
   <div>
