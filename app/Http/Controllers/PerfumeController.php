@@ -20,7 +20,7 @@ class PerfumeController extends Controller
      */
     public function index()
     {
-        $perfumes = Perfume::all();
+        $perfumes = auth()->user()->perfumes;
 
         return view('Admin.Perfume.index')->with('perfumes', $perfumes);
     }
@@ -32,9 +32,9 @@ class PerfumeController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all();
-        $generos = Genero::all();
-        $precentacions = Precentacion::all();
+        $categorias = Categoria::all(['id','nombre']);
+        $generos = Genero::all(['id','nombre']);
+        $precentacions = Precentacion::all(['id','nombre']);
 
         return view('Admin.Perfume.create')->with('categorias', $categorias)
                                            ->with('generos', $generos)
@@ -56,16 +56,16 @@ class PerfumeController extends Controller
             'tamaño' => 'required',
             'descripcion' => 'required',
             'precio' => 'required',
-            'categoria_id' => 'required',
-            'genero_id' => 'required',
-            'precentacion_id' => 'required',
+            'categoria' => 'required',
+            'genero' => 'required',
+            'precentacion' => 'required',
          ]);
 
          //Guardar la imagen
          $ruta_imagen = $request['imagen_perfume']->store('perfume','public');
 
          // Rezise a la imagen
-         $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(800,600);
+         $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(350,350);
          $img->save();
  
          
@@ -78,9 +78,9 @@ class PerfumeController extends Controller
             'tamaño' => $data['tamaño'],
             'descripcion' => $data['descripcion'],
             'user_id' => Auth::user()->id,
-            'categoria_id' => $data['categoria_id'],
-            'genero_id' => $data['genero_id'],
-            'precentacion_id' => $data['precentacion_id'],
+            'categoria_id' => $data['categoria'],
+            'genero_id' => $data['genero'],
+            'precentacion_id' => $data['precentacion'],
             ]);
 
         return redirect()->route('perfume.index')->with('estado','La informacion se envio correctamente');
@@ -107,9 +107,9 @@ class PerfumeController extends Controller
      */
     public function edit(Perfume $perfume)
     {
-        $categorias = Categoria::all();
-        $generos = Genero::all();
-        $precentacions = Precentacion::all();
+        $categorias = Categoria::all(['id','nombre']);
+        $generos = Genero::all(['id','nombre']);
+        $precentacions = Precentacion::all(['id','nombre']);
 
         return view('Admin.perfume.edit', compact('perfume','categorias','generos','precentacions'));
     }
@@ -130,9 +130,9 @@ class PerfumeController extends Controller
             'tamaño' => 'required',
             'descripcion' => 'required',
             'precio' => 'required',
-            'categoria_id' => 'required',
-            'genero_id' => 'required',
-            'precentacion_id' => 'required',
+            'categoria' => 'required',
+            'genero' => 'required',
+            'precentacion' => 'required',
         ]);
         
         // Guardando los datos del formulario en la base de datos
@@ -141,9 +141,9 @@ class PerfumeController extends Controller
         $perfume->precio = $data['precio'];
         $perfume->tamaño = $data['tamaño'];
         $perfume->descripcion = $data['descripcion'];
-        $perfume->categoria_id = $data['categoria_id'];
-        $perfume->genero_id = $data['genero_id'];
-        $perfume->precentacion_id = $data['precentacion_id'];
+        $perfume->categoria_id = $data['categoria'];
+        $perfume->genero_id = $data['genero'];
+        $perfume->precentacion_id = $data['precentacion'];
         
         // Si el usuario sube un anueva imagen de portafolio
            if (request('imagen_perfume')) {
@@ -152,7 +152,7 @@ class PerfumeController extends Controller
             $ruta_imagen = $request['imagen_perfume']->store('upload-perfumes','public');
     
             //Resize de la imagen
-            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(400,400);
+            $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(300,300);
     
             $img->save();
     

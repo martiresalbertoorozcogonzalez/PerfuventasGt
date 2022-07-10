@@ -11,21 +11,21 @@ Auth::routes();
 // Ruta para Administracion de PerfuventasGuatemala
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth','verified']], function() {
-
 
 // Ruta para el CRUD de perfumes
-Route::get('/perfume', [App\Http\Controllers\PerfumeController::class, 'index'])->name('perfume.index');
 
-Route::get('/perfume/create', [App\Http\Controllers\PerfumeController::class, 'create'])->name('perfume.create');
+Route::group(['middleware' => ['auth','verified']], function() {
 
-Route::post('/perfume', [App\Http\Controllers\PerfumeController::class, 'store'])->name('perfume.store');
+    Route::get('/perfume', [App\Http\Controllers\PerfumeController::class, 'index'])->name('perfume.index');
 
-Route::get('/perfume/{perfume}/edit', [App\Http\Controllers\PerfumeController::class, 'edit'])->name('perfume.edit');
+    Route::get('/perfume/create', [App\Http\Controllers\PerfumeController::class, 'create'])->name('perfume.create');
 
-Route::put('/perfume/{perfume}',[App\Http\Controllers\PerfumeController::class, 'update'])->name('perfume.update');
+    Route::post('/perfume', [App\Http\Controllers\PerfumeController::class, 'store'])->name('perfume.store');
 
-Route::delete('/perfume/{perfume}',[App\Http\Controllers\PerfumeController::class, 'destroy'])->name('perfume.delete');
+    Route::get('/perfume/{perfume}/edit', [App\Http\Controllers\PerfumeController::class, 'edit'])->name('perfume.edit');
 
+    Route::put('/perfume/{perfume}',[App\Http\Controllers\PerfumeController::class, 'update'])->name('perfume.update');
+
+    Route::delete('/perfume/{perfume}',[App\Http\Controllers\PerfumeController::class, 'destroy'])->name('perfume.delete');
 
 });

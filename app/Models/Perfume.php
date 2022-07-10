@@ -13,12 +13,12 @@ class Perfume extends Model
         'titulo',
         'nombre_marca',
         'precio',
-        'tamaño',
         'descripcion',
+        'tamaño',
+        'imagen_perfume',
         'categoria_id',
         'precentacion_id',
         'genero_id',
-        'imagen_perfume',
       ];
 
 
@@ -26,4 +26,10 @@ class Perfume extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function categorias()
+    {
+        return $this->hasOne(Categoria::class);
+    }
+
 }

@@ -47,18 +47,11 @@ class CreatePerfumesTable extends Migration
             $table->string('precio');
             $table->text('descripcion');
 
-            $table->foreignId('categoria_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->bigInteger('genero_id')->unsigned();
-            $table->bigInteger('precentacion_id')->unsigned();
-
-            $table->foreign('genero_id')->references('id')->on('generos')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-
-            $table->foreign('precentacion_id')->references('id')->on('precentacions')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->references('id')->on('users')->comment('El usuario que crea el perfume');
+            $table->foreignId('categoria_id')->references('id')->on('categorias')->comment('La categoria del perfume');
+        
+            $table->foreignId('genero_id')->constrained()->onDelete('cascade');
+            $table->foreignId('precentacion_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -72,8 +65,8 @@ class CreatePerfumesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('perfumes');
-        Schema::dropIfExists('categorias');
         Schema::dropIfExists('generos');
         Schema::dropIfExists('precentacions');
+        Schema::dropIfExists('categorias');
     }
 }

@@ -110,10 +110,11 @@
     <select class="block appearance-none border border-gray-200 
               text-gray-700 rounded leading-tight focus:outline-none 
               focus:bg-white focus:border-gray-500 p-3 bg-gray-100 
-              w-full" name="categoria_id" id="categoria">
+              w-full" name="categoria" id="categoria">
         <option disabled selected> Selecciona </option>
         @foreach ($categorias as $categoria)
-            <option value="{{ $categoria->id }}" {{ $perfume->categoria_id == $categoria->id ? 'selected' : '' }}>{{ $categoria->nombre }}
+            <option value="{{ $categoria->id }}" {{ $perfume->categoria_id == $categoria->id ? 'selected' : '' }}>
+                {{ $categoria->nombre }}
             </option>
         @endforeach
     </select>
@@ -133,7 +134,7 @@
     <select class="block appearance-none border border-gray-200 
               text-gray-700 rounded leading-tight focus:outline-none 
               focus:bg-white focus:border-gray-500 p-3 bg-gray-100 
-              w-full" name="genero_id" id="categoria">
+              w-full" name="genero" id="categoria">
         <option disabled selected> Selecciona </option>
         @foreach ($generos as $genero)
             <option value="{{ $genero->id }}" {{ $perfume->genero_id == $genero->id ? 'selected' : '' }}>{{ $genero->nombre }}
@@ -155,7 +156,7 @@
     <select class="block appearance-none border border-gray-200 
               text-gray-700 rounded leading-tight focus:outline-none 
               focus:bg-white focus:border-gray-500 p-3 bg-gray-100 
-              w-full" name="precentacion_id" id="categoria">
+              w-full" name="precentacion" id="categoria">
         <option disabled selected> Selecciona </option>
         @foreach ($precentacions as $precentacion)
             <option value="{{ $precentacion->id }}" {{ $perfume->precentacion_id == $precentacion->id ? 'selected' : '' }}>{{ $precentacion->nombre }}

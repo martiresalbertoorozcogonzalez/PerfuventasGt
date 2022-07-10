@@ -94,47 +94,22 @@
   </div>
   
   <div class="px-5 py-10">
+
+    
     <div class="flex flex-wrap justify-center text-center gap-3">
+      @foreach ($perfumes as $item)
       <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
         <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/ejemplo1.png') }}">
+          <img alt="ecommerce" class="h-60" src="/storage/{{ $item->imagen_perfume }}">
         </a>
         <div class="mt-4">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
+          <h2 class="text-gray-900 title-font text-lg font-medium">{{ $item->titulo }}</h2>
+          <p class="mt-1">Q{{ $item->precio }}</p>
         </div>
       </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/ejemplo1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
+      
+      @endforeach
       
     </div>
 

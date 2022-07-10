@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function perfumes()
     {
-        return $this->hasOne(User::class);
+        return $this->hasMany(Perfume::class);
     }
 }
