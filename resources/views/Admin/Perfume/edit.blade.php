@@ -9,18 +9,22 @@
 @section('content')
 
 
-<div class="container mx-auto mt-3">
+<div class="container flex flex-col mx-auto my-auto p-10">
 
-<h1 class="text-5xl text-center font-bold mb-3">Crear un Perfume</h1>
-
-
-<div class="bg-red-200 py-3 px-10 mb-5">
+    <div class="mb-6">
+        
+    <a href="{{ route('perfume.index') }}" class="bg-pink-400 hover:bg-pink-300 sm:text-sm md:text-lg text-center font-bold p-3 rounded-lg">Regresar</a>
+                
+    </div>
+    
+    <div class="bg-red-200 py-3 px-10 mb-5">
 
 <form class="flex flex-col max-w-lg mx-auto p-0 m-0 my-10"  action="{{ route('perfume.update', ['perfume'=> $perfume->id]) }}" method="POST" enctype="multipart/form-data" novalidate>
     
 @csrf
 @method('PUT')
 
+<h1 class="text-5xl text-center font-bold px-10 py-10">Editar Perfume</h1>
     
 <div class="mb-5">
 

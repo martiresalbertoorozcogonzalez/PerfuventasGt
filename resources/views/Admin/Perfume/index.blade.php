@@ -8,58 +8,117 @@
 
 <div class="container mx-auto px-4">
 
-    {{-- Botones de Crear y regresar --}}
-    <div class="flex flex-row justify-between">
-        <div class="flex flex-row my-4">
-            <a href="{{ route('home') }}" class="bg-pink-400 hover:bg-pink-300 sm:text-sm md:text-lg text-center font-bold p-3 rounded-lg">Regresar</a>
-        </div>
+{{-- Botones de Crear y regresar --}}
+<div class="flex flex-col justify-center items-center md:flex-row md:justify-between">
+    <div class="my-4">
+        <a href="{{ route('home') }}" class="bg-pink-400 hover:bg-pink-300 sm:text-sm md:text-lg text-center font-bold p-3 rounded-lg">Regresar</a>
+    </div>
+
+    <div class="-mt-1">
+        <h1 class="text-5xl font-bold text-center">PerfuVentasGuatemala</h1>
+    </div>
+
+    <div class="my-4">
+        <a href="{{ route('perfume.create') }}" class="bg-pink-400 hover:bg-pink-300 sm:text-sm md:text-lg font-bold p-3 rounded-lg">Crear perfume</a>
+    </div>
     
-        <div class="flex flex-row-reverse my-4">
-            <a href="{{ route('perfume.create') }}" class="bg-pink-400 hover:bg-pink-300 sm:text-sm md:text-lg text-center font-bold p-3 rounded-lg">Crear Perfume</a>
-        </div>
-       
-    </div>
+</div>
 
-    {{-- Seccion de portafolio --}}
-    <div class="flex flex-wrap -m-4">
-        
-      {{-- Ac va el Foreach --}}
-
-             
-      @foreach ($perfumes as $item)
-        <div class="p-4 lg:w-1/3">
-
+{{-- Tabla de productos que vienen de la base de datos --}}
+<div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="overflow-x-auto">
+            <table class="min-w-full">
             
-            <div class="rounded shadow-md relative">
+            <thead class="border-b bg-red-200">
+                <tr>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                ID
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Titulo
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Marca
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Precio
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Tamaño
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Categoria
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Genero
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Precentacion
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Imagen
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Editar
+                </th>
+                <th scope="col" class="text-sm font-medium text-indigo-600 px-6 py-4 text-left">
+                Eliminar
+                </th>
+                </tr>
+            </thead>
 
+            <tbody>
                 
-                <img  src="/storage/{{ $item->imagen_perfume }}" alt="">
-
-                <div class="flex justify-center items-center">
-                 {{-- <h2 class="text-3xl uppercase font-bold text-black text-center absolute top-28">{{ $item->nombre_marca}}</h2> --}}
-                </div>
-                <div>
-                    
-                    <a href="{{ route('perfume.edit',['perfume' => $item->id]) }}" class="bg-pink-300 hover:bg-pink-200 text-xs uppercase font-bold rounded-full p-2 absolute top-0 ml-2 mt-2">
-                         <span>Editar</span>
-                    </a>
-                    <form action="{{ route('perfume.delete',['perfume' => $item->id]) }}" method="POST" class="bg-red-400 hover:bg-red-300 text-xs text-bg-white uppercase font-bold rounded-full p-2 absolute top-0 ml-20 mt-2">
-                        @csrf
-                        @method('DELETE')
-                        <input class="bg-red-400 text-gray-800 font-bold" type="submit" value="Eliminar">
-                    </form>
-                </div>
-            </div>
+            @foreach ($perfumes as $perfume)
             
-        </div>   
+            <tr class="border-b">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {{ $perfume->id }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ $perfume->titulo }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{ $perfume->nombre_marca }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{ $perfume->precio }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{ $perfume->tamaño }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{ $perfume->categoria->nombre }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{ $perfume->genero->nombre }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{ $perfume->precentacion->nombre }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                   <img src="/storage/{{ $perfume->imagen_perfume }}" alt="">
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('perfume.edit',['perfume' => $perfume->id]) }}" class="w-full hover:bg-pink-300	bg-pink-400 font-bold p-2 focus:outline focus:shadow-outline uppercase rounded">Editar</a>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('perfume.delete',['perfume' => $perfume->id]) }}" class="w-full hover:bg-pink-300	bg-pink-400 font-bold p-2 focus:outline focus:shadow-outline uppercase rounded">Eliminar</a>
+                </td>
+            </tr>
             
-            
-        @endforeach
+            @endforeach
 
-
-
+            </tbody>
+        </table>
+        </div>
     </div>
-   
+    </div>
+</div>
+            
+        
 </div>
 
         

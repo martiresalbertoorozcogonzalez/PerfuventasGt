@@ -103,7 +103,7 @@
           <img alt="ecommerce" class="h-60" src="/storage/{{ $item->imagen_perfume }}">
         </a>
         <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
+          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $item->categoria->nombre }}</h3>
           <h2 class="text-gray-900 title-font text-lg font-medium">{{ $item->titulo }}</h2>
           <p class="mt-1">Q{{ $item->precio }}</p>
         </div>

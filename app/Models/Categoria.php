@@ -14,10 +14,4 @@ class Categoria extends Model
         'slug',
       ];
 
-
-      public function perfume()
-      {
-        return $this->hasOne(Perfume::class);
-      }
-
 }

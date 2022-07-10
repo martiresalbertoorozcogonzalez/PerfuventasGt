@@ -27,9 +27,19 @@ class Perfume extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function categorias()
+    public function categoria()
     {
-        return $this->hasOne(Categoria::class);
+        return $this->belongsTo(Categoria::class);
+    }
+
+    public function genero()
+    {
+        return $this->belongsTo(Genero::class);
+    }
+
+    public function precentacion()
+    {
+        return $this->belongsTo(Precentacion::class);
     }
 
 }

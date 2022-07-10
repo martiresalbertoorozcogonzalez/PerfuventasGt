@@ -9,17 +9,22 @@
 @section('content')
 
 
-<div class="container mx-auto mt-3">
+<div class="container flex flex-col mx-auto my-auto p-10">
 
-<h1 class="text-5xl text-center font-bold mb-3">Crear un Perfume</h1>
-
+<div class="mb-6">
+    
+<a href="{{ route('perfume.index') }}" class="bg-pink-400 hover:bg-pink-300 sm:text-sm md:text-lg text-center font-bold p-3 rounded-lg">Regresar</a>
+            
+</div>
 
 <div class="bg-red-200 py-3 px-10 mb-5">
-
+    
 <form class="flex flex-col max-w-lg mx-auto p-0 m-0 my-10" action="{{route('perfume.store')}}" method="POST" enctype="multipart/form-data" novalidate>
-    
+        
 @csrf
-    
+        
+<h1 class="text-5xl text-center font-bold px-10 py-10">Crear Perfume</h1>
+        
 <div class="mb-5">
 
     <label for="titulo" class="block text-black font-bold text-lg mb-2">titulo</label>
@@ -178,7 +183,7 @@
 
     <input type="hidden" name="descripcion" id="descripcion" value="{{ old('descripcion') }}">
 
-    <trix-editor class="bg-white @error('descripcion') is-invalid @enderror " input="descripcion">
+    <trix-editor class="bg-white" input="descripcion">
     </trix-editor>
 
     @error('descripcion')
@@ -204,7 +209,7 @@
     @enderror()
 </div>
 
-<button class="bg-teal-500 w-full hover:bg-purple-500	bg-purple-400 font-bold p-3 focus:outline focus:shadow-outline uppercase ">Publicar Portafolio</button>
+<button class="bg-teal-500 w-full hover:bg-purple-500	bg-purple-400 font-bold p-3 focus:outline focus:shadow-outline uppercase ">Publicar Perfume</button>
 
 </form>
     
