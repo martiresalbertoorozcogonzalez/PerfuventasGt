@@ -7,7 +7,7 @@
         <span class="ml-3 text-xl text-white font-bold">PerfuventasGuatemala</span>
       </a>
       <nav class="flex flex-col md:flex-col lg:flex-row lg:ml-7 items-center text-base text-white justify-center gap-1">
-        <a class="mr-5 hover:text-indigo-600">Inicio</a>
+        <a href="{{ url('/') }}" class="mr-5 hover:text-indigo-600">Inicio</a>
         <a class="mr-5 hover:text-indigo-600">Fragancias</a>
         <a class="mr-5 hover:text-indigo-600">Quienes somos</a>
         <a class="mr-5 hover:text-indigo-600">Contactanos</a>

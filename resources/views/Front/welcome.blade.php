@@ -90,7 +90,7 @@
 <section class="mx-auto">
   
   <div class="flex justify-center text-center mt-5">
-    <h1 class="text-4xl text-indigo-500 font-bold">-Ultimos-</h1>
+    <h1 class="text-4xl text-indigo-500 font-bold">-Ultimos perfumes-</h1>
   </div>
   
   <div class="px-5 py-10">
@@ -105,6 +105,7 @@
         <div class="mt-4">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $item->categoria->nombre }}</h3>
           <h2 class="text-gray-900 title-font text-lg font-medium">{{ $item->titulo }}</h2>
+          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $item->genero->nombre }}</h3>
           <p class="mt-1">Q{{ $item->precio }}</p>
         </div>
       </div>
@@ -117,112 +118,60 @@
 
 </section>
 
-{{-- Seccion de novedades --}}
+{{-- Seccion de perfumes de mujer --}}
 <section class="mx-auto">
   
   <div class="flex justify-center mt-5">
-    <h1 class="text-4xl text-indigo-500 font-bold">-Novedades-</h1>
+    <h1 class="text-4xl text-indigo-500 font-bold">-Perfumes de mujer-</h1>
   </div>
   
   <div class="px-5 py-10">
     <div class="flex flex-wrap justify-center text-center gap-3">
+      @foreach ($perfumesdemujer as $mujer)
+          
       <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
         <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/ejemplo1.png') }}">
+          <img alt="ecommerce" class="h-60" src="/storage/{{ $mujer->imagen_perfume }}">
         </a>
         <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
+          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $mujer->categoria->nombre }}</h3>
+          <h2 class="text-gray-900 title-font text-lg font-medium">{{$mujer->titulo }}}</h2>
+          <p class="mt-1">{{ $mujer->precio }}</p>
         </div>
       </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/ejemplo1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      
+
+      @endforeach
+
     </div>
 
   </div>
 
 </section>
 
-{{-- Seccion de favoritas --}}
+{{-- Seccion de perfumes de hombre --}}
 <section class="mx-auto">
   
   <div class="flex justify-center mt-5">
-    <h1 class="text-4xl text-indigo-500 font-bold">-Favoritos-</h1>
+    <h1 class="text-4xl text-indigo-500 font-bold">-Perfumers de Hombre-</h1>
   </div>
   
   <div class="px-5 py-10">
     <div class="flex flex-wrap justify-center text-center gap-3">
+      @foreach ($perfumesdehombre as $hombre)
+          
       <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
         <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/ejemplo1.png') }}">
+          <img alt="ecommerce" class="h-60" src="/storage/{{ $hombre->imagen_perfume }}">
         </a>
         <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
+          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $hombre->categoria->nombre }}</h3>
+          <h2 class="text-gray-900 title-font text-lg font-medium">{{ $hombre->titulo }}</h2>
+          <p class="mt-1">{{ $hombre->precio }}</p>
         </div>
       </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/ejemplo1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      
+
+      @endforeach
+
     </div>
 
   </div>
@@ -238,47 +187,22 @@
   
   <div class="px-5 py-10">
     <div class="flex flex-wrap justify-center text-center gap-3">
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/ejemplo1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/ejemplo1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
-      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
-        <a class="flex justify-center relative rounded overflow-hidden">
-          <img alt="ecommerce" class="h-60" src="{{ asset('/img/1.png') }}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">EUA DE PERFUM</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Tribu de Benetton</h2>
-          <p class="mt-1">Q750.00</p>
-        </div>
-      </div>
+      @foreach ($estuches as $estuche)
+          
       
+      <div class="lg:w-1/5 md:w-1/2 p-2 w-full">
+        <a class="flex justify-center relative rounded overflow-hidden">
+          <img alt="ecommerce" class="h-60" src="/storage/{{ $estuche->imagen_perfume }}">
+        </a>
+        <div class="mt-4">
+          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $estuche->categoria->nombre }}</h3>
+          <h2 class="text-gray-900 title-font text-lg font-medium">{{ $estuche->titulo }}</h2>
+          <p class="mt-1">{{ $estuche->precio }}</p>
+        </div>
+      </div>
+
+      @endforeach
+
     </div>
 
   </div>
