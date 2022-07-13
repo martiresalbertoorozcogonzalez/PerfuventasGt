@@ -6,11 +6,21 @@ use Illuminate\Support\Facades\Route;
 // Ruta para el Front de Perfuventas Guatemala
 Route::get('/', [App\Http\Controllers\FrontController::class, 'index'])->name('front');
 
+// Rutas para todas las fragancias
+Route::get('/fragancias', [App\Http\Controllers\FrontController::class, 'fragancias'])->name('fragancias');
+
+// Ruta para quien somos
+Route::get('/quiensomos', [App\Http\Controllers\FrontController::class, 'quiensomos'])->name('quiensomos');
+
+// Ruta para contacto
+Route::get('/contacto', [App\Http\Controllers\FrontController::class, 'contacto'])->name('contacto');
+
+
+// Rutas del registro y login
 Auth::routes();
 
 // Ruta para Administracion de PerfuventasGuatemala
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 // Ruta para el CRUD de perfumes
 

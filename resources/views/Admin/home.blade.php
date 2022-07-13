@@ -10,13 +10,17 @@
             <img src="/img/fondo2.jpg" alt="">
         </a>
        
-        {{-- <a href="{{ route('servicios.index') }}" class="bg-green-400 hover:bg-green-300 rounded">
-            <h2 class="text-2xl text-center font-bold m-3 p-2">Servicios</h2>
+        <a href="" class="bg-green-400 hover:bg-green-300 rounded">
+            <h2 class="text-2xl text-center font-bold m-3 p-2">Quien somos</h2>
             <img src="/img/fondo2.jpg" alt="">
-        </a> --}}
+        </a>
     </div>
 
-   </div>
+    
+
+</div>
+
+
     
 
 @endsection

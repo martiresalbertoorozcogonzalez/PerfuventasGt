@@ -8,14 +8,15 @@
       </a>
       <nav class="flex flex-col md:flex-col lg:flex-row lg:ml-7 items-center text-base text-white justify-center gap-1">
         <a href="{{ url('/') }}" class="mr-5 hover:text-indigo-600">Inicio</a>
-        <a class="mr-5 hover:text-indigo-600">Fragancias</a>
-        <a class="mr-5 hover:text-indigo-600">Quienes somos</a>
-        <a class="mr-5 hover:text-indigo-600">Contactanos</a>
+        <a href="{{ route('fragancias') }}" class="mr-5 hover:text-indigo-600">Perfumeria</a>
+        <a href="{{ route('quiensomos') }}" class="mr-5 hover:text-indigo-600">Quienes somos</a>
+        <a href="{{ route('contacto') }}" class="mr-5 hover:text-indigo-600">Contactanos</a>
       </nav>
       <button class="inline-flex items-center hover:bg-purple-300	bg-purple-500 border-0 py-1 px-3 focus:outline-none rounded text-base text-white mt-4 md:mt-0">PDF Listado de precios
       </button>
     </div>
 
+    
 </header>
 
 

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
+
+
+
+    // Procedimeinto para mostrar los perfumes en sus diferentes categorias
     public function index()
     {
         $perfumes = Perfume::all();
@@ -21,4 +25,31 @@ class FrontController extends Controller
                                     ->with('perfumesdehombre', $perfumesdehombre)
                                     ->with('estuches', $estuches);
     }
+
+
+    // Procedimiento para mostrar todos los perfumes
+    public function fragancias()
+    {
+
+        $fragancias = Perfume::all();
+        return view('Front.fragancias')->with('fragancias', $fragancias); 
+    }
+
+
+    // Procedimiento para mostrar todos los perfumes
+    public function quiensomos()
+    {
+        $perfumes = Perfume::all();
+        return view('Front.quiensomos')->with('perfumes', $perfumes); 
+    }
+
+
+    // Procedimiento para mostrar todos los perfumes
+    public function contacto()
+    {
+        return view('Front.contacto'); 
+    }
+
+
+
 }
