@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Perfume;
 use App\Models\Categoria;
+use App\Models\Quiensomos;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -39,8 +40,10 @@ class FrontController extends Controller
     // Procedimiento para mostrar todos los perfumes
     public function quiensomos()
     {
+        $quiensomos = Quiensomos::all();
         $perfumes = Perfume::all();
-        return view('Front.quiensomos')->with('perfumes', $perfumes); 
+        return view('Front.quiensomos')->with('perfumes', $perfumes)
+                                       ->with('quiensomos',$quiensomos); 
     }
 
 
