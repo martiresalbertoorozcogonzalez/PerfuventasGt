@@ -15,6 +15,9 @@ Route::get('/quiensomosfront', [App\Http\Controllers\FrontController::class, 'qu
 // Ruta para contacto
 Route::get('/contacto', [App\Http\Controllers\FrontController::class, 'contacto'])->name('contacto');
 
+// Ruta para el CRUD de mensajes
+Route::post('/contact', [App\Http\Controllers\MensajesController::class, 'store'])->name('contact');
+   
 
 // Rutas del registro y login
 Auth::routes();
@@ -54,8 +57,6 @@ Route::group(['middleware' => ['auth','verified']], function() {
    Route::delete('/quiensomos/{quiensomos}',[App\Http\Controllers\QuiensomosController::class, 'destroy'])->name('quiensomos.delete');
 
 
-
-
    // Ruta para el CRUD del blog
    Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
 
@@ -68,7 +69,5 @@ Route::group(['middleware' => ['auth','verified']], function() {
    Route::put('/blog/{blog}',[App\Http\Controllers\BlogController::class, 'update'])->name('blog.update');
 
    Route::delete('/blog/{blog}',[App\Http\Controllers\BlogController::class, 'destroy'])->name('blog.delete');
-
-
 
 });

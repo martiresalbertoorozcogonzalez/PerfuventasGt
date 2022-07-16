@@ -13,7 +13,9 @@
           <h1 class="sm:text-5xl text-2xl font-medium title-font mb-2 text-gray-900">{{ $item->titulo }}</h1>
           <div class="h-1 w-20 bg-indigo-500 rounded"></div>
         </div>
-        <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">{{ $item->descripcion }}</p>
+        <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">
+          {!! $item->descripcion !!}
+        </p>
       </div>
       
       @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Perfume;
 use App\Models\Categoria;
 use App\Models\Quiensomos;
@@ -15,6 +16,7 @@ class FrontController extends Controller
     // Procedimeinto para mostrar los perfumes en sus diferentes categorias
     public function index()
     {
+        $blogs = Blog::all();
         $perfumes = Perfume::all();
         $perfumesdemujer = Perfume::where("genero_id","=",1)->get();
         $perfumesdehombre = Perfume::where("genero_id","=",2)->get();
@@ -24,7 +26,8 @@ class FrontController extends Controller
         return view('Front.welcome')->with('perfumes', $perfumes)
                                     ->with('perfumesdemujer', $perfumesdemujer)
                                     ->with('perfumesdehombre', $perfumesdehombre)
-                                    ->with('estuches', $estuches);
+                                    ->with('estuches', $estuches)
+                                    ->with('blogs', $blogs);
     }
 
 
@@ -52,7 +55,6 @@ class FrontController extends Controller
     {
         return view('Front.contacto'); 
     }
-
 
 
 }
